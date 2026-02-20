@@ -1,0 +1,35 @@
+TASK 7: AI PROMPT ENGINEERING ANALYSIS
+
+1. TECHNIQUE SELECTED:
+One-Shot Prompting
+
+2. PROGRAMMING TASK DEFINED:
+Write a C function that checks if a person's age qualifies them as an adult (18 or older).
+
+3. PROMPT AND AI RESPONSE:
+
+MY PROMPT:
+"Here's an example of a C function that checks if a number is positive:
+
+int is_positive(int n)
+{
+    if (n > 0)
+        return (1);
+    return (0);
+}
+
+Now, following the same style, write a C function that checks if a number is above 18."
+
+AI RESPONSE:
+int is_adult(int n)
+{
+    if (n >= 18)
+        return (1);
+    return (0);
+}
+
+4. JUSTIFICATION (Why One-Shot Prompting):
+One-shot prompting was the most appropriate technique for this task because providing a single example established the exact coding style I needed—simple if-statements with return values of 1 or 0. Without the example, the AI might have used different naming conventions or more complex logic. The pattern-matching from one clear example eliminated ambiguity and ensured consistency.
+
+5. PRACTICAL APPLICATION REFLECTION:
+In large software projects, one-shot prompting maintains coding consistency across teams by showing developers one canonical example to follow. When onboarding new team members or generating boilerplate code, providing a single well-written example is faster and clearer than writing lengthy style guides. This technique could automate repetitive function generation while keeping the entire codebase uniform in structure and readability.
