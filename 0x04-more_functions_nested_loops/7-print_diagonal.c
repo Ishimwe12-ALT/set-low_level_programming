@@ -1,12 +1,11 @@
 #include "main.h"
-
 /**
- * print_line - draws a straight line
- * @n: number of underscores
+ * print_diagonal - draws a diagonal line
+ * @n: number of lines
  */
-void print_line(int n)
+void print_diagonal(int n)
 {
-	int i;
+	int i, j;
 
 	if (n <= 0)
 	{
@@ -15,7 +14,11 @@ void print_line(int n)
 	}
 
 	for (i = 0; i < n; i++)
-		_putchar('_');
+	{
+		for (j = 0; j < i; j++)
+			_putchar(' ');
 
-	_putchar('\n');
+		_putchar('\\');
+		_putchar('\n');
+	}
 }
