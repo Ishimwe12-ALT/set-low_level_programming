@@ -1,27 +1,30 @@
-#include "main.h"
+#include <stdio.h>
 
 /**
- * print_triangle - prints a triangle
- * @size: size of triangle
+ * main - prints numbers from 1 to 100, with Fizz/Buzz rules
+ *
+ * Return: Always 0
  */
-void print_triangle(int size)
+int main(void)
 {
-	int i, j, k;
+	int i;
 
-	if (size <= 0)
+	for (i = 1; i <= 100; i++)
 	{
-		_putchar('\n');
-		return;
+		if (i % 3 == 0 && i % 5 == 0)
+			printf("FizzBuzz");
+		else if (i % 3 == 0)
+			printf("Fizz");
+		else if (i % 5 == 0)
+			printf("Buzz");
+		else
+			printf("%d", i);
+
+		if (i < 100)
+			printf(" ");
 	}
 
-	for (i = 1; i <= size; i++)
-	{
-		for (j = size - i; j > 0; j--)
-			_putchar(' ');
+	printf("\n");
 
-		for (k = 0; k < i; k++)
-			_putchar('#');
-
-		_putchar('\n');
-	}
+	return (0);
 }
