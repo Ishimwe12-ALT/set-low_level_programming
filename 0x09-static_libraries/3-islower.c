@@ -1,1 +1,2 @@
-int _islower(int c) { (void)c; return (0); }
+#include "main.h"
+int _islower(int c) { return (c >= 'a' && c <= 'z'); }

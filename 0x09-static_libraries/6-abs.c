@@ -1,1 +1,2 @@
-int _abs(int n) { (void)n; return (0); }
+#include "main.h"
+int _abs(int n) { return (n < 0 ? -n : n); }

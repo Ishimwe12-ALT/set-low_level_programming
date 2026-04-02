@@ -1,1 +1,2 @@
-int _isdigit(int c) { (void)c; return (0); }
+#include "main.h"
+int _isdigit(int c) { return (c >= '0' && c <= '9'); }
