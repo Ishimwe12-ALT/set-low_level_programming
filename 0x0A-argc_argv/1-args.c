@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 {
 	(void)argv;
 
-	print_number(argc - 1);
+	print_number(argc);
 	_putchar('\n');
 
 	return (0);
