@@ -12,7 +12,7 @@ void print_number(int n)
 }
 
 /**
- * main - prints number of arguments
+ * main - prints number of arguments passed
  * @argc: argument count
  * @argv: argument vector
  * Return: 0
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 {
 	(void)argv;
 
-	print_number(argc);
+	print_number(argc - 1);
 	_putchar('\n');
 
 	return (0);
