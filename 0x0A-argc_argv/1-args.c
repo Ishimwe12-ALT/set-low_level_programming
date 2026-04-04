@@ -1,17 +1,6 @@
 #include "main.h"
 
 /**
- * print_number - prints an integer
- * @n: number
- */
-void print_number(int n)
-{
-	if (n >= 10)
-		print_number(n / 10);
-	_putchar((n % 10) + '0');
-}
-
-/**
  * main - prints number of arguments
  * @argc: argument count
  * @argv: argument vector
@@ -19,9 +8,15 @@ void print_number(int n)
  */
 int main(int argc, char *argv[])
 {
+	int n = argc - 1;
+
 	(void)argv;
 
-	print_number(argc);
+	if (n >= 10)
+	{
+		_putchar((n / 10) + '0');
+	}
+	_putchar((n % 10) + '0');
 	_putchar('\n');
 
 	return (0);
