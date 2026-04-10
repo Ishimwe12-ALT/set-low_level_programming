@@ -1,16 +1,24 @@
 #include <stdio.h>
+#include "main.h"
 
 /**
- * main - prints the number of arguments passed
- * @argc: argument count
- * @argv: argument vector
+ * main - prints the number of arguments passed into it
+ * @argc: number of arguments
+ * @argv: array of arguments
  *
- * Return: Always 0
+ * Return: Always 0 (Success)
  */
-int main(int argc, char *argv[])
+int main(int argc, char *argv[] __attribute__((unused)))
 {
-	(void)argv;
+	int count = argc - 1;
 
-	printf("%d\n", argc - 1);
+	if (count >= 10)
+	{
+		/* This handles two digit numbers if necessary */
+		_putchar((count / 10) + '0');
+	}
+	_putchar((count % 10) + '0');
+	_putchar('\n');
+
 	return (0);
 }
