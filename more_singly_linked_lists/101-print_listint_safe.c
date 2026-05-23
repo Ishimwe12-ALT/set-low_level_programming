@@ -24,19 +24,18 @@ size_t print_listint_safe(const listint_t *head)
 		if (slow == fast)
 			break;
 	}
-
 	while (head != NULL)
 	{
-		_putchar('[');
-		_putchar('0');
-		_putchar('x');
 		count++;
 		if (head == slow && count > 1)
 		{
-			_putchar(']');
+			_putchar('-');
+			_putchar('>');
 			_putchar(' ');
+			_putchar('\n');
 			break;
 		}
+		_putchar('\n');
 		head = head->next;
 	}
 	return (count);
