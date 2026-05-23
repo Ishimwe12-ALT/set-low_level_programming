@@ -14,11 +14,17 @@ size_t free_listint_safe(listint_t **h)
 	listint_t *tmp;
 	size_t count;
 
+	if (h == NULL || *h == NULL)
+	{
+		if (h != NULL)
+			*h = NULL;
+		return (0);
+	}
+
 	slow = *h;
 	fast = *h;
-	count = 0;
 
-	while (fast != NULL && fast->next != NULL)
+	while (fast->next != NULL && fast->next->next != NULL)
 	{
 		slow = slow->next;
 		fast = fast->next->next;
@@ -26,20 +32,44 @@ size_t free_listint_safe(listint_t **h)
 			break;
 	}
 
-	slow = *h;
-	while (slow != NULL)
+	if (fast->next == NULL || fast->next->next == NULL)
+	{
+		while (*h != NULL)
+		{
+			tmp = (*h)->next;
+			free(*h);
+			count++;
+			*h = tmp;
+		}
+		*h = NULL;
+		return (count);
+	}
+
+	fast = *h;
+	while (fast != slow)
+	{
+		fast = fast->next;
+		slow = slow->next;
+	}
+
+	while (*h != slow)
+	{
+		tmp = (*h)->next;
+		free(*h);
+		count++;
+		*h = tmp;
+	}
+
+	slow = slow->next;
+	while (slow != *h)
 	{
 		tmp = slow->next;
 		free(slow);
 		count++;
-		if (tmp == fast && fast != NULL)
-		{
-			free(fast);
-			count++;
-			break;
-		}
 		slow = tmp;
 	}
+	free(*h);
+	count++;
 	*h = NULL;
 	return (count);
 }
