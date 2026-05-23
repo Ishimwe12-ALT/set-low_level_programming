@@ -2,41 +2,36 @@
 #include <stdlib.h>
 
 /**
- * print_listint_safe - prints a listint_t linked list safely
- * @head: pointer to the head of the list
- *
- * Return: number of nodes in the list
+ * print_listint_safe - prints a listint_t list safely
+ * @head: pointer to head
+ * Return: number of nodes
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow;
-	const listint_t *fast;
-	size_t count;
+    const listint_t **visited;
+    size_t count = 0, i;
 
-	slow = head;
-	fast = head;
-	count = 0;
+    visited = malloc(sizeof(listint_t *) * 1024);
+    if (!visited)
+        exit(98);
 
-	while (fast != NULL && fast->next != NULL)
-	{
-		slow = slow->next;
-		fast = fast->next->next;
-		if (slow == fast)
-			break;
-	}
-	while (head != NULL)
-	{
-		count++;
-		if (head == slow && count > 1)
-		{
-			_putchar('-');
-			_putchar('>');
-			_putchar(' ');
-			_putchar('\n');
-			break;
-		}
-		_putchar('\n');
-		head = head->next;
-	}
-	return (count);
+    while (head)
+    {
+        for (i = 0; i < count; i++)
+        {
+            if (head == visited[i])
+            {
+                printf("-> [%p] %d\n", (void *)head, head->n);
+                free(visited);
+                return (count);
+            }
+        }
+
+        printf("[%p] %d\n", (void *)head, head->n);
+        visited[count++] = head;
+        head = head->next;
+    }
+
+    free(visited);
+    return (count);
 }
