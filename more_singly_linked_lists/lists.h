@@ -1,20 +1,21 @@
-#include "lists.h"
+#ifndef LISTS_H
+#define LISTS_H
+
+#include <stddef.h>
 
 /**
- * sum_listint - returns the sum of all the data of a listint_t list
- * @head: pointer to the first node
+ * struct listint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
  *
- * Return: sum of all the data, or 0 if the list is empty
+ * Description: singly linked list node structure
  */
-int sum_listint(listint_t *head)
+typedef struct listint_s
 {
-	int sum = 0;
+	int n;
+	struct listint_s *next;
+} listint_t;
 
-	while (head)
-	{
-		sum += head->n;
-		head = head->next;
-	}
+int sum_listint(listint_t *head);
 
-	return (sum);
-}
+#endif
