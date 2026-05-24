@@ -1,37 +1,20 @@
 #include "lists.h"
 
 /**
- * find_listint_loop - finds the loop in a linked list
- * @head: pointer to the head of the list
+ * sum_listint - returns the sum of all the data of a listint_t list
+ * @head: pointer to the first node
  *
- * Return: address of the node where the loop starts,
- * or NULL if there is no loop
+ * Return: sum of all the data, or 0 if the list is empty
  */
-listint_t *find_listint_loop(listint_t *head)
+int sum_listint(listint_t *head)
 {
-	listint_t *slow, *fast;
+	int sum = 0;
 
-	slow = head;
-	fast = head;
-
-	while (slow && fast && fast->next)
+	while (head)
 	{
-		slow = slow->next;
-		fast = fast->next->next;
-
-		if (slow == fast)
-		{
-			slow = head;
-
-			while (slow != fast)
-			{
-				slow = slow->next;
-				fast = fast->next;
-			}
-
-			return (slow);
-		}
+		sum += head->n;
+		head = head->next;
 	}
 
-	return (NULL);
+	return (sum);
 }
