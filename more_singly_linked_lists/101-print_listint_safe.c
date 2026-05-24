@@ -3,39 +3,38 @@
 #include "lists.h"
 
 /**
- * print_listint_safe - prints a listint_t list safely
+ * print_listint_safe - prints a listint_t linked list safely
  * @head: pointer to the head of the list
  *
  * Return: number of nodes in the list
  */
 size_t print_listint_safe(const listint_t *head)
 {
+	const listint_t *node, *check;
 	size_t count = 0;
-	const listint_t *current;
-	const listint_t *check;
 
-	current = head;
+	node = head;
 
-	while (current)
+	while (node)
 	{
 		check = head;
 
-		while (check != current)
+		while (check != node)
 		{
-			if (check == current->next)
+			if (check == node->next)
 			{
 				printf("-> [%p] %d\n",
-					(void *)current->next,
-					current->next->n);
+					(void *)node->next,
+					node->next->n);
 				return (count);
 			}
 
 			check = check->next;
 		}
 
-		printf("[%p] %d\n", (void *)current, current->n);
+		printf("[%p] %d\n", (void *)node, node->n);
 		count++;
-		current = current->next;
+		node = node->next;
 	}
 
 	return (count);
