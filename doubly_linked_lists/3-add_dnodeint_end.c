@@ -1,37 +1,31 @@
-#include "lists.h"
-#include <stdlib.h"
+#ifndef LISTS_H
+#define LISTS_H
+
+#include <stddef.h>
 
 /**
- * add_dnodeint_end - adds node at end
- * @head: pointer to head
- * @n: value
+ * struct dlistint_s - doubly linked list
+ * @n: integer
+ * @prev: points to the previous node
+ * @next: points to the next node
  *
- * Return: new node
+ * Description: doubly linked list node structure
  */
-dlistint_t *add_dnodeint_end(dlistint_t **head, const int n)
+typedef struct dlistint_s
 {
-	dlistint_t *new, *temp;
+	int n;
+	struct dlistint_s *prev;
+	struct dlistint_s *next;
+} dlistint_t;
 
-	new = malloc(sizeof(dlistint_t));
-	if (!new)
-		return (NULL);
+size_t print_dlistint(const dlistint_t *h);
+size_t dlistint_len(const dlistint_t *h);
+dlistint_t *add_dnodeint(dlistint_t **head, const int n);
+dlistint_t *add_dnodeint_end(dlistint_t **head, const int n);
+void free_dlistint(dlistint_t *head);
+dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index);
+int sum_dlistint(dlistint_t *head);
+dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n);
+int delete_dnodeint_at_index(dlistint_t **head, unsigned int index);
 
-	new->n = n;
-	new->next = NULL;
-
-	if (*head == NULL)
-	{
-		new->prev = NULL;
-		*head = new;
-		return (new);
-	}
-
-	temp = *head;
-	while (temp->next)
-		temp = temp->next;
-
-	temp->next = new;
-	new->prev = temp;
-
-	return (new);
-}
+#endif /* LISTS_H */
