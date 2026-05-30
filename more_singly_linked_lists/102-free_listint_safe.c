@@ -2,41 +2,67 @@
 #include <stdlib.h>
 
 /**
- * free_listint_safe - frees a listint_t list safely
- * @h: pointer to head pointer
- * Return: number of nodes freed
+ * _realloc_free - reallocates memory for an array of node pointers
+ * @list: the old list
+ * @size: size of the new list
+ * @new_node: new node to add
+ *
+ * Return: pointer to the new list
+ */
+listint_t **_realloc_free(listint_t **list, size_t size, listint_t *new_node)
+{
+	listint_t **new_list;
+	size_t i;
+
+	new_list = malloc(size * sizeof(listint_t *));
+	if (new_list == NULL)
+	{
+		free(list);
+		exit(98);
+	}
+
+	for (i = 0; i < size - 1; i++)
+		new_list[i] = list[i];
+
+	new_list[i] = new_node;
+	free(list);
+
+	return (new_list);
+}
+
+/**
+ * free_listint_safe - safely frees a listint_t list.
+ * @h: double pointer to the head of the list
+ *
+ * Return: the size of the list that was free'd
  */
 size_t free_listint_safe(listint_t **h)
 {
-    listint_t **visited;
-    size_t count = 0, i;
-    listint_t *temp;
+	size_t i, num = 0;
+	listint_t **list = NULL;
+	listint_t *next;
 
-    if (!h || !*h)
-        return (0);
+	if (h == NULL || *h == NULL)
+		return (0);
 
-    visited = malloc(sizeof(listint_t *) * 1024);
-    if (!visited)
-        exit(98);
+	while (*h != NULL)
+	{
+		for (i = 0; i < num; i++)
+		{
+			if (*h == list[i])
+			{
+				*h = NULL;
+				free(list);
+				return (num);
+			}
+		}
+		num++;
+		list = _realloc_free(list, num, *h);
+		next = (*h)->next;
+		free(*h);
+		*h = next;
+	}
 
-    while (*h)
-    {
-        for (i = 0; i < count; i++)
-        {
-            if (*h == visited[i])
-            {
-                *h = NULL;
-                free(visited);
-                return (count);
-            }
-        }
-
-        visited[count++] = *h;
-        temp = (*h)->next;
-        free(*h);
-        *h = temp;
-    }
-
-    free(visited);
-    return (count);
+	free(list);
+	return (num);
 }
