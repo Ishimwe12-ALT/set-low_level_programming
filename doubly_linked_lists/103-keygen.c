@@ -11,8 +11,8 @@
  */
 int main(int argc, char *argv[])
 {
-	char password[7], *codex;
-	int len = 0, i, temp;
+	char p[7], *c;
+	int len, i, t;
 
 	if (argc != 2)
 	{
@@ -20,41 +20,29 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	codex = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
+	c = "A-CHRDw87lNS0E9B2TibgpnMVys5XzvtOGJcYLU+4mjW6fxqZeF3Qa1rPhdKIouk";
 	len = strlen(argv[1]);
 
-	password[0] = codex[(len ^ 59) & 63];
-
-	temp = 0;
-	for (i = 0; i < len; i++)
-		temp += argv[1][i];
-	password[1] = codex[(temp ^ 79) & 63];
-
-	temp = 1;
-	for (i = 0; i < len; i++)
-		temp *= argv[1][i];
-	password[2] = codex[(temp ^ 85) & 63];
-
-	temp = 0;
-	for (i = 0; i < len; i++)
-	{
-		if (argv[1][i] > temp)
-			temp = argv[1][i];
-	}
-	srand(temp ^ 14);
-	password[3] = codex[rand() & 63];
-
-	temp = 0;
-	for (i = 0; i < len; i++)
-		temp += (argv[1][i] * argv[1][i]);
-	password[4] = codex[(temp ^ 239) & 63];
-
+	p[0] = c[(len ^ 59) & 63];
+	for (i = 0, t = 0; i < len; i++)
+		t += argv[1][i];
+	p[1] = c[(t ^ 79) & 63];
+	for (i = 0, t = 1; i < len; i++)
+		t *= argv[1][i];
+	p[2] = c[(t ^ 85) & 63];
+	for (i = 0, t = 0; i < len; i++)
+		if (argv[1][i] > t)
+			t = argv[1][i];
+	srand(t ^ 14);
+	p[3] = c[rand() & 63];
+	for (i = 0, t = 0; i < len; i++)
+		t += (argv[1][i] * argv[1][i]);
+	p[4] = c[(t ^ 239) & 63];
 	for (i = 0; i < argv[1][0]; i++)
-		temp = rand();
-	password[5] = codex[(temp ^ 229) & 63];
+		t = rand();
+	p[5] = c[(t ^ 229) & 63];
+	p[6] = '\0';
 
-	password[6] = '\0';
-	printf("%s", password);
-
+	printf("%s", p);
 	return (0);
 }
