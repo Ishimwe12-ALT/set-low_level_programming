@@ -2,6 +2,18 @@
 #include <string.h>
 #include "hash_tables.h"
 
+/**
+ * hash_table_set - Adds an element to the hash table
+ * @ht: The hash table to add to
+ * @key: The key of the element
+ * @value: The value to associate with the key
+ *
+ * Description: Adds a new key/value pair to the hash table, or updates
+ * an existing key. Handles collisions with chaining.
+ * In case of collision, adds new node at beginning of list.
+ *
+ * Return: 1 on success, 0 on failure
+ */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;

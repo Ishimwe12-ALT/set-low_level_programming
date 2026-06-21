@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include "hash_tables.h"
 
+/**
+ * hash_table_print - Prints a hash table
+ * @ht: The hash table to print
+ *
+ * Description: Prints the key/value pairs in the hash table in the
+ * order they appear (array then list). Format: {'key': 'value', ...}
+ *
+ * Return: Nothing
+ */
 void hash_table_print(const hash_table_t *ht)
 {
 	unsigned long int i;

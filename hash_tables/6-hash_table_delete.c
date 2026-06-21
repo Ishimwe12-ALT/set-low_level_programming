@@ -1,6 +1,15 @@
 #include <stdlib.h>
 #include "hash_tables.h"
 
+/**
+ * hash_table_delete - Frees a hash table
+ * @ht: The hash table to free
+ *
+ * Description: Frees all memory associated with the hash table,
+ * including all nodes and their key/value strings.
+ *
+ * Return: Nothing
+ */
 void hash_table_delete(hash_table_t *ht)
 {
 	unsigned long int i;
