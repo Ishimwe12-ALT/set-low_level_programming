@@ -1,6 +1,15 @@
 #include <stdlib.h>
 #include "hash_tables.h"
 
+/**
+ * hash_table_create - Creates a new hash table
+ * @size: The size of the hash table array
+ *
+ * Description: Allocates memory for a new hash table structure
+ * and its array of pointers. Initializes all pointers to NULL.
+ *
+ * Return: Pointer to the newly created hash table, or NULL on failure
+ */
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *ht;
